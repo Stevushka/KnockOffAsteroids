@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time * 0.8f);
-
         if (asteroidLife <= 0)
         {
             asteroidLife = 6;
