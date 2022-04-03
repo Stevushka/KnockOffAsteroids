@@ -25,25 +25,11 @@ public class Asteroid : MonoBehaviour
 
         rb = rock.GetComponent<Rigidbody>();
 
-        float speedX = Random.Range(200f, 800f);
-        int selectorX = Random.Range(0, 2);
-        int dirX = 0;
-        if (selectorX == 1) 
-            dirX = -1;
-        else
-            dirX = 1;
-        float finalSpeedX = speedX * dirX;
-        rb.AddForce(transform.right * finalSpeedX);
+        float speedX = Random.Range(200f, 800f) * (Random.Range(0,2) == 1 ? -1: 1);
+        rb.AddForce(transform.right * speedX);
 
-        float speedY = Random.Range(200f, 800f);
-        int selectorY = Random.Range(0, 2);
-        int dirY = 0;
-        if (selectorY == 1)
-            dirY = -1;
-        else
-            dirY = 1;
-        float finalSpeedY = speedY * dirY;
-        rb.AddForce(transform.up * finalSpeedY);
+        float speedY = Random.Range(200f, 800f) * (Random.Range(0, 2) == 1 ? -1 : 1);
+        rb.AddForce(transform.up * speedY);
     }
 
     public void SetGeneration(int generation)
@@ -117,30 +103,39 @@ public class Asteroid : MonoBehaviour
                 rock.transform.rotation = Quaternion.identity;
                 rb.AddForce(transform.right * (reverseSpeed * (-1)));
             }
-
-            if (rock.transform.position.x < sceneLeftEdge - rockOffset) { rock.transform.rotation = Quaternion.identity; rb.AddForce(transform.right * reverseSpeed); }
+            else if (rock.transform.position.x < sceneLeftEdge - rockOffset) 
+            { 
+                rock.transform.rotation = Quaternion.identity; 
+                rb.AddForce(transform.right * reverseSpeed); 
+            }
             if (rock.transform.position.y > sceneTopEdge + rockOffset)
             {
                 rock.transform.rotation = Quaternion.identity;
                 rb.AddForce(transform.up * (reverseSpeed * (-1)));
             }
-
-            if (rock.transform.position.y < sceneBottomEdge - rockOffset) { rock.transform.rotation = Quaternion.identity; rb.AddForce(transform.up * reverseSpeed); }
+            else if (rock.transform.position.y < sceneBottomEdge - rockOffset) 
+            { 
+                rock.transform.rotation = Quaternion.identity; 
+                rb.AddForce(transform.up * reverseSpeed); 
+            }
         }
         else
         {
-            rockOffset = 2.0f; if (rock.transform.position.x > sceneRightEdge + rockOffset)
+            rockOffset = 2.0f; 
+            
+            if (rock.transform.position.x > sceneRightEdge + rockOffset)
             {
                 rock.transform.position = new Vector2(sceneLeftEdge - rockOffset, rock.transform.position.y);
             }
-
-            if (rock.transform.position.x < sceneLeftEdge - rockOffset) { rock.transform.position = new Vector2(sceneRightEdge + rockOffset, rock.transform.position.y); }
+            else if (rock.transform.position.x < sceneLeftEdge - rockOffset) 
+            { 
+                rock.transform.position = new Vector2(sceneRightEdge + rockOffset, rock.transform.position.y); 
+            }
             if (rock.transform.position.y > sceneTopEdge + rockOffset)
             {
                 rock.transform.position = new Vector2(rock.transform.position.x, sceneBottomEdge - rockOffset);
             }
-
-            if (rock.transform.position.y < sceneBottomEdge - rockOffset)
+            else if (rock.transform.position.y < sceneBottomEdge - rockOffset)
             {
                 rock.transform.position = new Vector2(rock.transform.position.x, sceneTopEdge + rockOffset);
             }

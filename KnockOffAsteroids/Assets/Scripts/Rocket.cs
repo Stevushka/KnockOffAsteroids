@@ -8,6 +8,8 @@ public class Rocket : MonoBehaviour
     private float MaxSpeed = 2f;
     private Camera mainCam;
     private Rigidbody rb;
+    private float horizontalInput = 0;
+    private float verticalInput = 0;
 
     private void Start()
     {
@@ -32,8 +34,14 @@ public class Rocket : MonoBehaviour
 
     private void ControlRocket()
     {
-        transform.Rotate(0, 0, -Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
-        rb.AddForce(transform.up * thrust * Input.GetAxis("Vertical"));
+        if (Input.GetAxis("Horizontal") != 0)
+        {
+            transform.Rotate(0, 0, -Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime);
+        }
+        if (Input.GetAxis("Vertical") != 0)
+        {
+            rb.AddForce(transform.up * thrust * Input.GetAxis("Vertical"));
+        }
         rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -MaxSpeed, MaxSpeed), Mathf.Clamp(rb.velocity.y, -MaxSpeed, MaxSpeed));
     }
 
@@ -70,10 +78,9 @@ public class Rocket : MonoBehaviour
 
     public void ResetRocket()
     {
-        transform.position = new Vector2(0f, 0f);
+        transform.position = Vector2.zero;
         transform.eulerAngles = new Vector3(0, 180f, 0);
-        rb.velocity = new Vector3(0f, 0f, 0f);
-        rb.angularVelocity = new Vector3(0f, 0f, 0f);
+        rb.velocity = rb.angularVelocity = Vector3.zero;
     }
 
     void Shoot()

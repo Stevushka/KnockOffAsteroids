@@ -16,11 +16,11 @@ GameObject:
   - component: {fileID: 7366543692339832711}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7366543692339411877
 Transform:
   m_ObjectHideFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7366543692339832709}
   m_LocalRotation: {x: 0.00000031987892, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1105623, y: 0.1770468, z: 1.58}
+  m_LocalPosition: {x: -2.402, y: -7.88, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9fc428eadf2be4fd4bcd7e09ee65c9b6, type: 3}
 --- !u!114 &7366543692339832708
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97084e4713de8242b1cb5f58f2daf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rock: {fileID: 0}
+  rock: {fileID: 7366543692339832709}
   gameplay: {fileID: 0}
 --- !u!54 &7366543692339832711
 Rigidbody:
